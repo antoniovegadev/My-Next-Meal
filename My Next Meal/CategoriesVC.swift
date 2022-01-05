@@ -51,7 +51,7 @@ class CategoriesVC: UIViewController {
         Task {
             do {
                 let categories = try await NetworkManager.shared.getCategories()
-                updateUI(with: categories)
+                updateUI(with: categories.sorted { $0.category < $1.category })
             } catch {
                 print("There was an error")
             }
