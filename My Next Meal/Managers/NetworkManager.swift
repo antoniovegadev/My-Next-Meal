@@ -33,6 +33,24 @@ struct NetworkManager {
         }
     }
 
+    func getMeals(in category: String) async throws -> [Meal] {
+        let endpoint = baseURL + "filter.php?c=" + category
+        guard let url = URL(string: endpoint) else {
+            throw NMError.invalidURL
+        }
+        let (data, response) = try await URLSession.shared.data(from: url)
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            throw NMError.invalidResponse
+        }
+
+        do {
+            let decodedData = try decoder.decode(MealWrapper.self, from: data)
+            return decodedData.meals
+        } catch {
+            throw NMError.invalidData
+        }
+    }
+
     func downloadImage(from urlString: String) async -> UIImage? {
         guard let url = URL(string: urlString) else { return nil }
 

@@ -16,7 +16,9 @@ struct Category: Decodable {
     let category: String
     let imageURLString: String
     let description: String
+}
 
+extension Category {
     enum CodingKeys: String, CodingKey {
         case id = "idCategory"
         case category = "strCategory"
