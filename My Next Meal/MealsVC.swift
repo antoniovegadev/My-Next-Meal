@@ -13,6 +13,7 @@ class MealsVC: UIViewController {
         super.viewDidLoad()
 
         configure()
+        getCategories()
     }
 
     private func configure() {
@@ -21,6 +22,17 @@ class MealsVC: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
 
         navigationItem.title = "Meals"
+    }
+
+    private func getCategories() {
+        Task {
+            do {
+                let categories = try await NetworkManager.shared.getCategories()
+                print(categories)
+            } catch {
+                print("There was an error")
+            }
+        }
     }
 
 }
