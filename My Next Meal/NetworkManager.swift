@@ -5,9 +5,10 @@
 //  Created by Antonio Vega on 1/4/22.
 //
 
-import Foundation
+import UIKit
 
 struct NetworkManager {
+
     static let shared = NetworkManager()
     private let baseURL = "https://www.themealdb.com/api/json/v1/1/"
     private let decoder = JSONDecoder()
@@ -31,4 +32,17 @@ struct NetworkManager {
             throw NMError.invalidData
         }
     }
+
+    func downloadImage(from urlString: String) async -> UIImage? {
+        guard let url = URL(string: urlString) else { return nil }
+
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            guard let image = UIImage(data: data) else { return nil }
+            return image
+        } catch {
+            return nil
+        }
+    }
+    
 }

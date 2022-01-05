@@ -11,16 +11,14 @@ class NMCategoryCell: UITableViewCell {
 
     static let reuseID = "NMCategoryCell"
 
-    let foodImageView = UIImageView(image: UIImage(systemName: "photo"))
-    let titleLabel = UILabel()
+    let foodImageView = NMFoodImageView(frame: .zero)
+    let titleLabel = NMTitleLabel()
 
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        configureFoodImageView()
-        configureTitleLabel()
-        layoutUI()
+        configure()
     }
 
     required init?(coder: NSCoder) {
@@ -29,23 +27,10 @@ class NMCategoryCell: UITableViewCell {
 
     func set(category: Category) {
         titleLabel.text = category.category
+        foodImageView.downloadImage(fromURL: category.imageURLString)
     }
 
-    private func configureFoodImageView() {
-        foodImageView.layer.cornerRadius = 10
-        foodImageView.clipsToBounds = true
-        foodImageView.contentMode = .scaleAspectFit
-
-        foodImageView.translatesAutoresizingMaskIntoConstraints = false
-    }
-
-    private func configureTitleLabel() {
-        titleLabel.font = .preferredFont(forTextStyle: .headline)
-        titleLabel.textColor = .label
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-    }
-
-    private func layoutUI() {
+    private func configure() {
         addSubview(foodImageView)
         addSubview(titleLabel)
         
