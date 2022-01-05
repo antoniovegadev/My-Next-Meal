@@ -66,20 +66,84 @@
 		C5CD2A6E278508850091040C /* My Next Meal */ = {
 			isa = PBXGroup;
 			children = (
+				C5CD2A85278517670091040C /* MealsVC.swift */,
+				C5CD2A9A278564830091040C /* Custom Views */,
+				C5CD2A95278563DD0091040C /* Managers */,
+				C5CD2A94278563D40091040C /* Utilities */,
+				C5CD2A93278563C50091040C /* Model */,
+				C5CD2A96278563F40091040C /* Support */,
+			);
+			path = "My Next Meal";
+			sourceTree = "<group>";
+		};
+		C5CD2A93278563C50091040C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C5CD2A8927851B9C0091040C /* Category.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C5CD2A94278563D40091040C /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				C5CD2A8B27851F790091040C /* NMError.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		C5CD2A95278563DD0091040C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				C5CD2A872785190E0091040C /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		C5CD2A96278563F40091040C /* Support */ = {
+			isa = PBXGroup;
+			children = (
 				C5CD2A6F278508860091040C /* AppDelegate.swift */,
 				C5CD2A71278508860091040C /* SceneDelegate.swift */,
-				C5CD2A85278517670091040C /* MealsVC.swift */,
-				C5CD2A8D2785277B0091040C /* NMCategoryCell.swift */,
-				C5CD2A8F2785490E0091040C /* NMFoodImageView.swift */,
-				C5CD2A91278561950091040C /* NMTitleLabel.swift */,
-				C5CD2A872785190E0091040C /* NetworkManager.swift */,
-				C5CD2A8B27851F790091040C /* NMError.swift */,
-				C5CD2A8927851B9C0091040C /* Category.swift */,
 				C5CD2A78278508880091040C /* Assets.xcassets */,
 				C5CD2A7A278508880091040C /* LaunchScreen.storyboard */,
 				C5CD2A7D278508880091040C /* Info.plist */,
 			);
-			path = "My Next Meal";
+			name = Support;
+			sourceTree = "<group>";
+		};
+		C5CD2A97278564110091040C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				C5CD2A8D2785277B0091040C /* NMCategoryCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		C5CD2A98278564300091040C /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				C5CD2A91278561950091040C /* NMTitleLabel.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
+		C5CD2A992785645E0091040C /* ImageViews */ = {
+			isa = PBXGroup;
+			children = (
+				C5CD2A8F2785490E0091040C /* NMFoodImageView.swift */,
+			);
+			path = ImageViews;
+			sourceTree = "<group>";
+		};
+		C5CD2A9A278564830091040C /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				C5CD2A97278564110091040C /* Cells */,
+				C5CD2A992785645E0091040C /* ImageViews */,
+				C5CD2A98278564300091040C /* Labels */,
+			);
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
