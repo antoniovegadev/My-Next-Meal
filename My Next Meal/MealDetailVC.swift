@@ -9,8 +9,7 @@ import UIKit
 
 class MealDetailVC: UIViewController {
 
-    var meal: Meal!
-    var mealDetail: MealDetail? = nil
+    var mealID: String!
 
     let mealImageView = NMFoodImageView(frame: .zero)
     let titleLabel = NMTitleLabel()
@@ -55,7 +54,7 @@ class MealDetailVC: UIViewController {
     private func getMealDetails() {
         Task {
             do {
-                let mealDetail = try await NetworkManager.shared.getMealDetails(mealID: meal.id)
+                let mealDetail = try await NetworkManager.shared.getMealDetails(mealID: mealID)
                 print(mealDetail.ingredients, mealDetail.ingredients.count)
                 updateUI(with: mealDetail)
             } catch {
@@ -65,7 +64,6 @@ class MealDetailVC: UIViewController {
     }
 
     func updateUI(with mealDetail: MealDetail) {
-        self.mealDetail = mealDetail
         DispatchQueue.main.async {
             self.titleLabel.text = mealDetail.name
             self.instructionsLabel.text = mealDetail.instructions.replacingOccurrences(of: "\r", with: "\r\r")
@@ -74,3 +72,13 @@ class MealDetailVC: UIViewController {
     }
 
 }
+
+//struct MealDetailContainerView: UIViewControllerRepresentable {
+//
+//    func makeUIViewController(context: Context) -> some UIViewController {
+//        let vc = MealDetailVC()
+//    }
+//
+//    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+//    }
+//}

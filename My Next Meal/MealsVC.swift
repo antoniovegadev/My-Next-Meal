@@ -79,7 +79,7 @@ extension MealsVC: UITableViewDelegate, UITableViewDataSource {
         let destVC = MealDetailVC()
         let meal = meals[indexPath.row]
 
-        destVC.meal = meal
+        destVC.mealID = meal.id
 
         navigationController?.pushViewController(destVC, animated: true)
     }
