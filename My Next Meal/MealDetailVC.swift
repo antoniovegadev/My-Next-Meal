@@ -56,7 +56,7 @@ class MealDetailVC: UIViewController {
         Task {
             do {
                 let mealDetail = try await NetworkManager.shared.getMealDetails(mealID: meal.id)
-                print(meal.id)
+                print(mealDetail.ingredients, mealDetail.ingredients.count)
                 updateUI(with: mealDetail)
             } catch {
                 print("There was an error retreiving ")
