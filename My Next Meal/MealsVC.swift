@@ -75,4 +75,13 @@ extension MealsVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let destVC = MealDetailVC()
+        let meal = meals[indexPath.row]
+
+        destVC.meal = meal
+
+        navigationController?.pushViewController(destVC, animated: true)
+    }
+
 }
