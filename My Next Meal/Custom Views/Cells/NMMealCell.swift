@@ -43,7 +43,6 @@ class NMMealCell: UITableViewCell {
 
             titleLabel.leadingAnchor.constraint(equalTo: mealImageView.trailingAnchor, constant: 10),
             titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            titleLabel.heightAnchor.constraint(equalToConstant: 20),
             titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -horizontalPadding)
         ])
     }

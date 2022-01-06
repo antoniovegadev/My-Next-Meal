@@ -22,6 +22,8 @@ class NMTitleLabel: UILabel {
     private func configure() {
         font = .preferredFont(forTextStyle: .headline)
         textColor = .label
+        numberOfLines = 0
+        lineBreakStrategy = .standard
         translatesAutoresizingMaskIntoConstraints = false
     }
 

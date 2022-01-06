@@ -14,12 +14,21 @@ class MealsVC: UIViewController {
     let tableView = UITableView()
     var meals: [Meal] = []
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configure()
         configureTableView()
         getMeals()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedIndexPath, animated: true)
+        }
     }
 
     private func configure() {

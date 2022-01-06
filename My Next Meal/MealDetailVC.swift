@@ -6,20 +6,25 @@
 //
 
 import UIKit
+import SwiftUI /* used only for creating Live Previews */
 
 class MealDetailVC: UIViewController {
 
     var mealID: String!
 
+    let scrollView = UIScrollView()
+    let contentView = UIView()
+
     let mealImageView = NMFoodImageView(frame: .zero)
     let titleLabel = NMTitleLabel()
     let instructionsLabel = NMBodyLabel()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configure()
-        configureSubView()
+        configureSubViews()
         getMealDetails()
     }
 
@@ -29,25 +34,44 @@ class MealDetailVC: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
     }
 
-    private func configureSubView() {
-        view.addSubview(mealImageView)
-        view.addSubview(titleLabel)
-        view.addSubview(instructionsLabel)
+
+    private func configureSubViews() {
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(mealImageView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(instructionsLabel)
+
+        titleLabel.textAlignment = .center
+
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            mealImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            mealImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+            scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            scrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.leftAnchor.constraint(equalTo: scrollView.leftAnchor),
+            contentView.rightAnchor.constraint(equalTo: scrollView.rightAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+
+            mealImageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 10),
+            mealImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             mealImageView.widthAnchor.constraint(equalToConstant: 144),
             mealImageView.heightAnchor.constraint(equalToConstant: 144),
 
             titleLabel.topAnchor.constraint(equalTo: mealImageView.bottomAnchor, constant: 5),
             titleLabel.centerXAnchor.constraint(equalTo: mealImageView.centerXAnchor),
-            titleLabel.heightAnchor.constraint(equalToConstant: 16),
+            titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
 
             instructionsLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-            instructionsLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            instructionsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
-            instructionsLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -5)
+            instructionsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            instructionsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            instructionsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5)
         ])
     }
 
@@ -73,12 +97,22 @@ class MealDetailVC: UIViewController {
 
 }
 
-//struct MealDetailContainerView: UIViewControllerRepresentable {
-//
-//    func makeUIViewController(context: Context) -> some UIViewController {
-//        let vc = MealDetailVC()
-//    }
-//
-//    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-//    }
-//}
+struct MealDetailContainerView: UIViewControllerRepresentable {
+
+    func makeUIViewController(context: Context) -> some UIViewController {
+        let vc = MealDetailVC()
+        vc.mealID = "52965"
+
+        return vc
+    }
+
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+    }
+
+}
+
+struct MealDetailVC_Preview: PreviewProvider {
+    static var previews: some View {
+        MealDetailContainerView()
+    }
+}
