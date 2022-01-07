@@ -8,7 +8,7 @@
 import UIKit
 import SwiftUI /* used only for creating Live Previews */
 
-class MealDetailVC: UIViewController {
+class MealDetailVC: NMDataLoadingVC {
 
     var mealID: String!
 
@@ -81,12 +81,15 @@ class MealDetailVC: UIViewController {
     }
 
     private func getMealDetails() {
+        showLoadingView()
         Task {
             do {
                 let mealDetail = try await NetworkManager.shared.getMealDetails(mealID: mealID)
                 updateUI(with: mealDetail)
+                dismissLoadingView()
             } catch {
                 print("There was an error retreiving ")
+                dismissLoadingView()
             }
         }
     }

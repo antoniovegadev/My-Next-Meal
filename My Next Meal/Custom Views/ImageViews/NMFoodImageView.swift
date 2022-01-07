@@ -9,8 +9,7 @@ import UIKit
 
 class NMFoodImageView: UIImageView {
 
-    let placeholder = UIImage(systemName: "photo")
-
+    let placeholder = UIImage(systemName: "photo")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,6 +31,8 @@ class NMFoodImageView: UIImageView {
     }
 
     func downloadImage(fromURL url: String) {
+        image = placeholder
+        
         Task {
             image = await NetworkManager.shared.downloadImage(from: url) ?? placeholder
         }

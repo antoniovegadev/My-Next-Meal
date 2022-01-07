@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MealsVC: UIViewController {
+class MealsVC: NMDataLoadingVC {
 
     var category: Category!
 
@@ -57,12 +57,15 @@ class MealsVC: UIViewController {
     }
 
     private func getMeals() {
+        showLoadingView()
         Task {
             do {
                 let meals = try await NetworkManager.shared.getMeals(in: category.category)
                 updateUI(with: meals.sorted { $0.name < $1.name })
+                dismissLoadingView()
             } catch {
                 print("There was an error fetching \(category.category) meals.")
+                dismissLoadingView()
             }
         }
     }

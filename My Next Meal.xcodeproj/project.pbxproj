@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C506506F2788CBE100C5F528 /* NMDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C506506E2788CBE100C5F528 /* NMDataLoadingVC.swift */; };
 		C59C1DFB278659B00051363F /* MealDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C1DFA278659B00051363F /* MealDetail.swift */; };
 		C59C1DFD27865E0E0051363F /* MealDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C1DFC27865E0E0051363F /* MealDetailVC.swift */; };
 		C59C1DFF27868BB10051363F /* NMBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C1DFE27868BB00051363F /* NMBodyLabel.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C506506E2788CBE100C5F528 /* NMDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMDataLoadingVC.swift; sourceTree = "<group>"; };
 		C59C1DFA278659B00051363F /* MealDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetail.swift; sourceTree = "<group>"; };
 		C59C1DFC27865E0E0051363F /* MealDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailVC.swift; sourceTree = "<group>"; };
 		C59C1DFE27868BB00051363F /* NMBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMBodyLabel.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				C5CD2A97278564110091040C /* Cells */,
 				C5CD2A992785645E0091040C /* ImageViews */,
 				C5CD2A98278564300091040C /* Labels */,
+				C506506E2788CBE100C5F528 /* NMDataLoadingVC.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				C5CD2A902785490E0091040C /* NMFoodImageView.swift in Sources */,
 				C5CD2A8C27851F790091040C /* NMError.swift in Sources */,
 				C5CD2AA02785E3940091040C /* NMMealCell.swift in Sources */,
+				C506506F2788CBE100C5F528 /* NMDataLoadingVC.swift in Sources */,
 				C59C1E0627879A1E0051363F /* NMTextSection.swift in Sources */,
 				C5CD2A8E2785277C0091040C /* NMCategoryCell.swift in Sources */,
 				C5CD2A8A27851B9C0091040C /* Category.swift in Sources */,

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoriesVC: UIViewController {
+class CategoriesVC: NMDataLoadingVC {
 
     let tableView = UITableView()
     var categories: [Category] = []
@@ -48,12 +48,15 @@ class CategoriesVC: UIViewController {
     }
 
     private func getCategories() {
+        showLoadingView()
         Task {
             do {
                 let categories = try await NetworkManager.shared.getCategories()
                 updateUI(with: categories.sorted { $0.category < $1.category })
+                dismissLoadingView()
             } catch {
                 print("There was an error")
+                dismissLoadingView()
             }
         }
     }
