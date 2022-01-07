@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MealDetailWrapper: Decodable {
+struct MealDetailAPIResponse: Decodable {
     let meals: [MealDetail]
 }
 

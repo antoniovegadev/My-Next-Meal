@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CategoryWrapper: Decodable {
+struct CategoryAPIResponse: Decodable {
     let categories: [Category]
 }
 

@@ -9,6 +9,12 @@ import UIKit
 
 struct NetworkManager {
 
+    enum MealDBRequest: String {
+        case getCategories = "categories.php"
+        case getMealsByCategory = "filter.php?c="
+        case getMealDetails = "lookup.php?i="
+    }
+
     static let shared = NetworkManager()
     private let baseURL = "https://www.themealdb.com/api/json/v1/1/"
     private let cache = NSCache<NSString, UIImage>()
@@ -16,8 +22,8 @@ struct NetworkManager {
 
     private init() {}
 
-    func getCategories() async throws -> [Category] {
-        let endpoint = baseURL + "categories.php"
+    func getRequest<T: Decodable>(_ request: MealDBRequest, parameter: String = "") async throws -> T {
+        let endpoint = baseURL + request.rawValue + parameter
         guard let url = URL(string: endpoint) else {
             throw NMError.invalidURL
         }
@@ -27,44 +33,7 @@ struct NetworkManager {
         }
 
         do {
-            let decodedData = try decoder.decode(CategoryWrapper.self, from: data)
-            return decodedData.categories
-        } catch {
-            throw NMError.invalidData
-        }
-    }
-
-    func getMeals(in category: String) async throws -> [Meal] {
-        let endpoint = baseURL + "filter.php?c=" + category
-        guard let url = URL(string: endpoint) else {
-            throw NMError.invalidURL
-        }
-        let (data, response) = try await URLSession.shared.data(from: url)
-        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-            throw NMError.invalidResponse
-        }
-
-        do {
-            let decodedData = try decoder.decode(MealWrapper.self, from: data)
-            return decodedData.meals
-        } catch {
-            throw NMError.invalidData
-        }
-    }
-
-    func getMealDetails(mealID: String) async throws -> MealDetail {
-        let endpoint = baseURL + "lookup.php?i=" + mealID
-        guard let url = URL(string: endpoint) else {
-            throw NMError.invalidURL
-        }
-        let (data, response) = try await URLSession.shared.data(from: url)
-        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-            throw NMError.invalidResponse
-        }
-
-        do {
-            let decodedData = try decoder.decode(MealDetailWrapper.self, from: data)
-            return decodedData.meals[0]
+            return try decoder.decode(T.self, from: data)
         } catch {
             throw NMError.invalidData
         }

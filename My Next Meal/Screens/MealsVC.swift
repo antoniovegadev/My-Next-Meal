@@ -49,8 +49,8 @@ class MealsVC: NMDataLoadingVC {
         tableView.register(NMMealCell.self, forCellReuseIdentifier: NMMealCell.reuseID)
     }
 
-    private func updateUI(with meals: [Meal]) {
-        self.meals = meals
+    private func updateUI(with meals: MealAPIResponse) {
+        self.meals = meals.meals.sorted { $0.name < $1.name }
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -60,8 +60,8 @@ class MealsVC: NMDataLoadingVC {
         showLoadingView()
         Task {
             do {
-                let meals = try await NetworkManager.shared.getMeals(in: category.category)
-                updateUI(with: meals.sorted { $0.name < $1.name })
+                let response: MealAPIResponse = try await NetworkManager.shared.getRequest(.getMealsByCategory, parameter: category.category)
+                updateUI(with: response)
                 dismissLoadingView()
             } catch {
                 print("There was an error fetching \(category.category) meals.")

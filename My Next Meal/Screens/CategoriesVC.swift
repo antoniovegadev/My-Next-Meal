@@ -51,8 +51,8 @@ class CategoriesVC: NMDataLoadingVC {
         showLoadingView()
         Task {
             do {
-                let categories = try await NetworkManager.shared.getCategories()
-                updateUI(with: categories.sorted { $0.category < $1.category })
+                let response: CategoryAPIResponse = try await NetworkManager.shared.getRequest(.getCategories)
+                updateUI(with: response)
                 dismissLoadingView()
             } catch {
                 print("There was an error")
@@ -61,8 +61,8 @@ class CategoriesVC: NMDataLoadingVC {
         }
     }
 
-    private func updateUI(with categories: [Category]) {
-        self.categories = categories
+    private func updateUI(with categories: CategoryAPIResponse) {
+        self.categories = categories.categories.sorted { $0.category < $1.category }
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }

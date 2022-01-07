@@ -84,8 +84,8 @@ class MealDetailVC: NMDataLoadingVC {
         showLoadingView()
         Task {
             do {
-                let mealDetail = try await NetworkManager.shared.getMealDetails(mealID: mealID)
-                updateUI(with: mealDetail)
+                let response: MealDetailAPIResponse = try await NetworkManager.shared.getRequest(.getMealDetails, parameter: mealID)
+                updateUI(with: response)
                 dismissLoadingView()
             } catch {
                 print("There was an error retreiving ")
@@ -94,12 +94,13 @@ class MealDetailVC: NMDataLoadingVC {
         }
     }
 
-    func updateUI(with mealDetail: MealDetail) {
+    func updateUI(with mealDetail: MealDetailAPIResponse) {
+        let meal = mealDetail.meals.first!
         DispatchQueue.main.async {
-            self.titleLabel.text = mealDetail.name
-            self.ingredientsView.set(sectionTitle: "Ingredients", description: String(mealDetail.ingredients.reduce("", { $0 + "\($1.name) - \($1.measurement)\r"}).dropLast()))
-            self.instructionsView.set(sectionTitle: "Instructions", description: mealDetail.instructions)
-            self.mealImageView.downloadImage(fromURL: mealDetail.imageURLString)
+            self.titleLabel.text = meal.name
+            self.ingredientsView.set(sectionTitle: "Ingredients", description: String(meal.ingredients.reduce("", { $0 + "\($1.name) - \($1.measurement)\r"}).dropLast()))
+            self.instructionsView.set(sectionTitle: "Instructions", description: meal.instructions)
+            self.mealImageView.downloadImage(fromURL: meal.imageURLString)
         }
     }
 
