@@ -12,7 +12,7 @@ class NMMealCell: UITableViewCell {
     static let reuseID = "NMMealCell"
 
     let mealImageView = NMFoodImageView(frame: .zero)
-    let titleLabel = NMTitleLabel()
+    let titleLabel = NMTitleLabel(fontSize: 16, textAlignment: .left, weight: .medium)
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
