@@ -43,7 +43,7 @@ class MealDetailVC: UIViewController {
         contentView.addSubview(ingredientsView)
         contentView.addSubview(instructionsView)
 
-        titleLabel.textAlignment = .center
+        mealImageView.contentMode = .scaleAspectFill
 
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         contentView.translatesAutoresizingMaskIntoConstraints = false
@@ -61,9 +61,9 @@ class MealDetailVC: UIViewController {
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
 
             mealImageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 10),
-            mealImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            mealImageView.widthAnchor.constraint(equalToConstant: 144),
-            mealImageView.heightAnchor.constraint(equalToConstant: 144),
+            mealImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            mealImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            mealImageView.heightAnchor.constraint(equalToConstant: 250),
 
             titleLabel.topAnchor.constraint(equalTo: mealImageView.bottomAnchor, constant: 5),
             titleLabel.centerXAnchor.constraint(equalTo: mealImageView.centerXAnchor),

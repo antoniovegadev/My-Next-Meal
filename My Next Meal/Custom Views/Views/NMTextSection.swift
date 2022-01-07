@@ -35,14 +35,14 @@ class NMTextSection: UIView {
         translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            sectionTitleLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 10),
-            sectionTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
-            sectionTitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
+            sectionTitleLabel.topAnchor.constraint(equalTo: self.topAnchor),
+            sectionTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            sectionTitleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor),
 
             descriptionTitlelabel.topAnchor.constraint(equalTo: sectionTitleLabel.bottomAnchor, constant: 10),
             descriptionTitlelabel.leadingAnchor.constraint(equalTo: sectionTitleLabel.leadingAnchor),
             descriptionTitlelabel.trailingAnchor.constraint(equalTo: sectionTitleLabel.trailingAnchor),
-            descriptionTitlelabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10)
+            descriptionTitlelabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
 
