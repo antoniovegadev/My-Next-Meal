@@ -16,8 +16,9 @@ class MealDetailVC: UIViewController {
     let contentView = UIView()
 
     let mealImageView = NMFoodImageView(frame: .zero)
-    let titleLabel = NMTitleLabel()
-    let instructionsLabel = NMBodyLabel()
+    let titleLabel = NMTitleLabel(fontSize: 22, textAlignment: .center, weight: .medium)
+    let ingredientsView = NMTextSection(frame: .zero)
+    let instructionsView = NMTextSection(frame: .zero)
 
 
     override func viewDidLoad() {
@@ -34,13 +35,13 @@ class MealDetailVC: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
     }
 
-
     private func configureSubViews() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         contentView.addSubview(mealImageView)
         contentView.addSubview(titleLabel)
-        contentView.addSubview(instructionsLabel)
+        contentView.addSubview(ingredientsView)
+        contentView.addSubview(instructionsView)
 
         titleLabel.textAlignment = .center
 
@@ -68,10 +69,14 @@ class MealDetailVC: UIViewController {
             titleLabel.centerXAnchor.constraint(equalTo: mealImageView.centerXAnchor),
             titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.75),
 
-            instructionsLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-            instructionsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-            instructionsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
-            instructionsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5)
+            ingredientsView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
+            ingredientsView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            ingredientsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+
+            instructionsView.topAnchor.constraint(equalTo: ingredientsView.bottomAnchor, constant: 30),
+            instructionsView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            instructionsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            instructionsView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15)
         ])
     }
 
@@ -79,7 +84,6 @@ class MealDetailVC: UIViewController {
         Task {
             do {
                 let mealDetail = try await NetworkManager.shared.getMealDetails(mealID: mealID)
-                print(mealDetail.ingredients, mealDetail.ingredients.count)
                 updateUI(with: mealDetail)
             } catch {
                 print("There was an error retreiving ")
@@ -90,7 +94,8 @@ class MealDetailVC: UIViewController {
     func updateUI(with mealDetail: MealDetail) {
         DispatchQueue.main.async {
             self.titleLabel.text = mealDetail.name
-            self.instructionsLabel.text = mealDetail.instructions.replacingOccurrences(of: "\r", with: "\r\r")
+            self.ingredientsView.set(sectionTitle: "Ingredients", description: String(mealDetail.ingredients.reduce("", { $0 + "\($1.name) - \($1.measurement)\r"}).dropLast()))
+            self.instructionsView.set(sectionTitle: "Instructions", description: mealDetail.instructions)
             self.mealImageView.downloadImage(fromURL: mealDetail.imageURLString)
         }
     }

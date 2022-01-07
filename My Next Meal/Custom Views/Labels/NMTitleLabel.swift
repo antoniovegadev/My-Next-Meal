@@ -19,8 +19,13 @@ class NMTitleLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
 
+    convenience init(fontSize: CGFloat, textAlignment: NSTextAlignment, weight: UIFont.Weight = .regular) {
+        self.init(frame: .zero)
+        self.textAlignment = textAlignment
+        self.font = .systemFont(ofSize: fontSize, weight: weight)
+    }
+
     private func configure() {
-        font = .preferredFont(forTextStyle: .headline)
         textColor = .label
         numberOfLines = 0
         lineBreakStrategy = .standard

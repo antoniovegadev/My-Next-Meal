@@ -11,6 +11,7 @@
 		C59C1DFD27865E0E0051363F /* MealDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C1DFC27865E0E0051363F /* MealDetailVC.swift */; };
 		C59C1DFF27868BB10051363F /* NMBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C1DFE27868BB00051363F /* NMBodyLabel.swift */; };
 		C59C1E01278692A40051363F /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C1E00278692A40051363F /* Ingredient.swift */; };
+		C59C1E0627879A1E0051363F /* NMTextSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C1E0527879A1E0051363F /* NMTextSection.swift */; };
 		C5CD2A70278508860091040C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD2A6F278508860091040C /* AppDelegate.swift */; };
 		C5CD2A72278508860091040C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD2A71278508860091040C /* SceneDelegate.swift */; };
 		C5CD2A79278508880091040C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5CD2A78278508880091040C /* Assets.xcassets */; };
@@ -32,6 +33,7 @@
 		C59C1DFC27865E0E0051363F /* MealDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailVC.swift; sourceTree = "<group>"; };
 		C59C1DFE27868BB00051363F /* NMBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMBodyLabel.swift; sourceTree = "<group>"; };
 		C59C1E00278692A40051363F /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		C59C1E0527879A1E0051363F /* NMTextSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMTextSection.swift; sourceTree = "<group>"; };
 		C5CD2A6C278508850091040C /* My Next Meal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Next Meal.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5CD2A6F278508860091040C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C5CD2A71278508860091040C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C59C1E04278799BA0051363F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C59C1E0527879A1E0051363F /* NMTextSection.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C5CD2A63278508850091040C = {
 			isa = PBXGroup;
 			children = (
@@ -160,6 +170,7 @@
 		C5CD2A9A278564830091040C /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				C59C1E04278799BA0051363F /* Views */,
 				C5CD2A97278564110091040C /* Cells */,
 				C5CD2A992785645E0091040C /* ImageViews */,
 				C5CD2A98278564300091040C /* Labels */,
@@ -245,6 +256,7 @@
 				C5CD2A902785490E0091040C /* NMFoodImageView.swift in Sources */,
 				C5CD2A8C27851F790091040C /* NMError.swift in Sources */,
 				C5CD2AA02785E3940091040C /* NMMealCell.swift in Sources */,
+				C59C1E0627879A1E0051363F /* NMTextSection.swift in Sources */,
 				C5CD2A8E2785277C0091040C /* NMCategoryCell.swift in Sources */,
 				C5CD2A8A27851B9C0091040C /* Category.swift in Sources */,
 				C59C1DFF27868BB10051363F /* NMBodyLabel.swift in Sources */,

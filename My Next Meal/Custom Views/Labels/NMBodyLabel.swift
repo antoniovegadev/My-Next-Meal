@@ -21,7 +21,7 @@ class NMBodyLabel: UILabel {
 
     private func configure() {
         font = .preferredFont(forTextStyle: .body)
-        textColor = .label
+        textColor = .secondaryLabel
         numberOfLines = 0
         lineBreakStrategy = .standard
         translatesAutoresizingMaskIntoConstraints = false
