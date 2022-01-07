@@ -65,6 +65,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C50650702788F61B00C5F528 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				C5CD2A85278517670091040C /* CategoriesVC.swift */,
+				C5CD2A9D27856B660091040C /* MealsVC.swift */,
+				C59C1DFC27865E0E0051363F /* MealDetailVC.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		C50650712788F64E00C5F528 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C506506E2788CBE100C5F528 /* NMDataLoadingVC.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		C59C1E04278799BA0051363F /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,9 +110,7 @@
 		C5CD2A6E278508850091040C /* My Next Meal */ = {
 			isa = PBXGroup;
 			children = (
-				C5CD2A85278517670091040C /* CategoriesVC.swift */,
-				C5CD2A9D27856B660091040C /* MealsVC.swift */,
-				C59C1DFC27865E0E0051363F /* MealDetailVC.swift */,
+				C50650702788F61B00C5F528 /* Screens */,
 				C5CD2A9A278564830091040C /* Custom Views */,
 				C5CD2A95278563DD0091040C /* Managers */,
 				C5CD2A94278563D40091040C /* Utilities */,
@@ -172,11 +188,11 @@
 		C5CD2A9A278564830091040C /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				C50650712788F64E00C5F528 /* View Controllers */,
 				C59C1E04278799BA0051363F /* Views */,
 				C5CD2A97278564110091040C /* Cells */,
 				C5CD2A992785645E0091040C /* ImageViews */,
 				C5CD2A98278564300091040C /* Labels */,
-				C506506E2788CBE100C5F528 /* NMDataLoadingVC.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
