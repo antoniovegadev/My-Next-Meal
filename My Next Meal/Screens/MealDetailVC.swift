@@ -88,7 +88,11 @@ class MealDetailVC: NMDataLoadingVC {
                 updateUI(with: response)
                 dismissLoadingView()
             } catch {
-                print("There was an error retreiving ")
+                if let nmError = error as? NMError {
+                    presentNMAlert(title: "Something went wrong", message: nmError.rawValue, buttonTitle: "Ok")
+                } else {
+                    presentNMAlert(title: "Something went wrong", message: "Unable to complete task at this time. Please try again.", buttonTitle: "Ok")
+                }
                 dismissLoadingView()
             }
         }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C506506F2788CBE100C5F528 /* NMDataLoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C506506E2788CBE100C5F528 /* NMDataLoadingVC.swift */; };
+		C506507427890CE500C5F528 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C506507327890CE500C5F528 /* UIViewController+Ext.swift */; };
 		C59C1DFB278659B00051363F /* MealDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C1DFA278659B00051363F /* MealDetail.swift */; };
 		C59C1DFD27865E0E0051363F /* MealDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C1DFC27865E0E0051363F /* MealDetailVC.swift */; };
 		C59C1DFF27868BB10051363F /* NMBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C1DFE27868BB00051363F /* NMBodyLabel.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		C506506E2788CBE100C5F528 /* NMDataLoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMDataLoadingVC.swift; sourceTree = "<group>"; };
+		C506507327890CE500C5F528 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		C59C1DFA278659B00051363F /* MealDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetail.swift; sourceTree = "<group>"; };
 		C59C1DFC27865E0E0051363F /* MealDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailVC.swift; sourceTree = "<group>"; };
 		C59C1DFE27868BB00051363F /* NMBodyLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMBodyLabel.swift; sourceTree = "<group>"; };
@@ -83,6 +85,14 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		C506507227890CCA00C5F528 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C506507327890CE500C5F528 /* UIViewController+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C59C1E04278799BA0051363F /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,9 +122,10 @@
 			children = (
 				C50650702788F61B00C5F528 /* Screens */,
 				C5CD2A9A278564830091040C /* Custom Views */,
-				C5CD2A95278563DD0091040C /* Managers */,
-				C5CD2A94278563D40091040C /* Utilities */,
 				C5CD2A93278563C50091040C /* Model */,
+				C5CD2A95278563DD0091040C /* Managers */,
+				C506507227890CCA00C5F528 /* Extensions */,
+				C5CD2A94278563D40091040C /* Utilities */,
 				C5CD2A96278563F40091040C /* Support */,
 			);
 			path = "My Next Meal";
@@ -267,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C506507427890CE500C5F528 /* UIViewController+Ext.swift in Sources */,
 				C5CD2A9C278568EB0091040C /* Meal.swift in Sources */,
 				C5CD2A9E27856B660091040C /* MealsVC.swift in Sources */,
 				C59C1DFD27865E0E0051363F /* MealDetailVC.swift in Sources */,
