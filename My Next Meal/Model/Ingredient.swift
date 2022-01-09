@@ -10,4 +10,9 @@ import Foundation
 struct Ingredient {
     let name: String
     let measurement: String
+
+    var imageURLString: String {
+        "https://www.themealdb.com/images/ingredients/\(name).png"
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+    }
 }

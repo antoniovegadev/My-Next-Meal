@@ -17,7 +17,7 @@ class MealDetailVC: NMDataLoadingVC {
 
     let mealImageView = NMFoodImageView(frame: .zero)
     let titleLabel = NMTitleLabel(fontSize: 22, textAlignment: .center, weight: .medium)
-    let ingredientsView = NMTextSection(frame: .zero)
+    let ingredientsView = UIView()
     let instructionsView = NMTextSection(frame: .zero)
 
 
@@ -29,9 +29,15 @@ class MealDetailVC: NMDataLoadingVC {
         getMealDetails()
     }
 
+    override func preferredContentSizeDidChange(forChildContentContainer container: UIContentContainer) {
+        super.preferredContentSizeDidChange(forChildContentContainer: container)
+        if (container as? NMIngredientsVC) != nil {
+            ingredientsView.heightAnchor.constraint(equalToConstant: container.preferredContentSize.height).isActive = true
+        }
+    }
+
     private func configure() {
         view.backgroundColor = .systemBackground
-
         navigationItem.largeTitleDisplayMode = .never
     }
 
@@ -47,6 +53,10 @@ class MealDetailVC: NMDataLoadingVC {
 
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         contentView.translatesAutoresizingMaskIntoConstraints = false
+        ingredientsView.translatesAutoresizingMaskIntoConstraints = false
+
+        let constraint = ingredientsView.heightAnchor.constraint(equalToConstant: 1000)
+        constraint.priority = UILayoutPriority(750)
 
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -71,9 +81,10 @@ class MealDetailVC: NMDataLoadingVC {
 
             ingredientsView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 30),
             ingredientsView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
-            ingredientsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            ingredientsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 15),
+            constraint,
 
-            instructionsView.topAnchor.constraint(equalTo: ingredientsView.bottomAnchor, constant: 30),
+            instructionsView.topAnchor.constraint(equalTo: ingredientsView.bottomAnchor, constant: 50),
             instructionsView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             instructionsView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
             instructionsView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15)
@@ -101,11 +112,18 @@ class MealDetailVC: NMDataLoadingVC {
     func updateUI(with mealDetail: MealDetailAPIResponse) {
         let meal = mealDetail.meals.first!
         DispatchQueue.main.async {
+            self.add(childVC: NMIngredientsVC(ingredients: meal.ingredients), to: self.ingredientsView)
             self.titleLabel.text = meal.name
-            self.ingredientsView.set(sectionTitle: "Ingredients", description: String(meal.ingredients.reduce("", { $0 + "\($1.name) - \($1.measurement)\r"}).dropLast()))
             self.instructionsView.set(sectionTitle: "Instructions", description: meal.instructions)
             self.mealImageView.downloadImage(fromURL: meal.imageURLString)
         }
+    }
+
+    func add(childVC: UIViewController, to containerView: UIView) {
+        addChild(childVC)
+        containerView.addSubview(childVC.view)
+        childVC.view.frame = containerView.bounds
+        childVC.didMove(toParent: self)
     }
 
 }
