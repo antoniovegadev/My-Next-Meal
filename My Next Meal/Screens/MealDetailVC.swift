@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SwiftUI /* used only for creating Live Previews */
 
 class MealDetailVC: NMDataLoadingVC {
 
@@ -15,7 +14,7 @@ class MealDetailVC: NMDataLoadingVC {
     let scrollView = UIScrollView()
     let contentView = UIView()
 
-    let mealImageView = NMFoodImageView(frame: .zero)
+    let mealImageView = NMImageView(frame: .zero)
     let titleLabel = NMTitleLabel(fontSize: 22, textAlignment: .center, weight: .medium)
     let ingredientsView = UIView()
     let instructionsView = NMTextSection(frame: .zero)
@@ -109,7 +108,7 @@ class MealDetailVC: NMDataLoadingVC {
         }
     }
 
-    func updateUI(with mealDetail: MealDetailAPIResponse) {
+    private func updateUI(with mealDetail: MealDetailAPIResponse) {
         let meal = mealDetail.meals.first!
         DispatchQueue.main.async {
             self.add(childVC: NMIngredientsVC(ingredients: meal.ingredients), to: self.ingredientsView)
@@ -119,31 +118,4 @@ class MealDetailVC: NMDataLoadingVC {
         }
     }
 
-    func add(childVC: UIViewController, to containerView: UIView) {
-        addChild(childVC)
-        containerView.addSubview(childVC.view)
-        childVC.view.frame = containerView.bounds
-        childVC.didMove(toParent: self)
-    }
-
-}
-
-struct MealDetailContainerView: UIViewControllerRepresentable {
-
-    func makeUIViewController(context: Context) -> some UIViewController {
-        let vc = MealDetailVC()
-        vc.mealID = "52965"
-
-        return vc
-    }
-
-    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
-    }
-
-}
-
-struct MealDetailVC_Preview: PreviewProvider {
-    static var previews: some View {
-        MealDetailContainerView()
-    }
 }

@@ -11,7 +11,7 @@ class NMCategoryCell: UICollectionViewCell {
 
     static let reuseID = "NMCategoryCell"
 
-    let foodImageView = NMFoodImageView(frame: .zero)
+    let foodImageView = NMImageView(frame: .zero)
     let titleLabel = NMTitleLabel(fontSize: 16, textAlignment: .left, weight: .medium)
 
 

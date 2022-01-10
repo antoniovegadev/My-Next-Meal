@@ -1,5 +1,5 @@
 //
-//  NMFoodImageView.swift
+//  NMImageView.swift
 //  My Next Meal
 //
 //  Created by Antonio Vega on 1/4/22.
@@ -7,9 +7,14 @@
 
 import UIKit
 
-class NMFoodImageView: UIImageView {
+class NMImageView: UIImageView {
 
-    let placeholder = UIImage(systemName: "photo")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
+    let placeholder = UIImage(systemName: "photo")?
+                        .withTintColor(
+                            .systemGray,
+                            renderingMode: .alwaysOriginal
+                        )
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)

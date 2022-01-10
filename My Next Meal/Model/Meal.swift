@@ -5,8 +5,6 @@
 //  Created by Antonio Vega on 1/4/22.
 //
 
-import Foundation
-
 struct MealAPIResponse: Decodable {
     let meals: [Meal]
 }

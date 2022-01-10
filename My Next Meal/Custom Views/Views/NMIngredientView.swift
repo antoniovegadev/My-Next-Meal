@@ -9,8 +9,9 @@ import UIKit
 
 class NMIngredientView: UIView {
 
-    let imageView = NMFoodImageView(frame: .zero)
+    let imageView = NMImageView(frame: .zero)
     let ingredientLabel = NMBodyLabel()
+
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -27,7 +28,7 @@ class NMIngredientView: UIView {
         ingredientLabel.text = "\(ingredient.name) - \(ingredient.measurement)"
     }
 
-    func configure() {
+    private func configure() {
         addSubview(imageView)
         addSubview(ingredientLabel)
 

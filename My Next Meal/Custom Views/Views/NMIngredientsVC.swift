@@ -14,6 +14,7 @@ class NMIngredientsVC: UIViewController {
     let titleLabel = NMTitleLabel(fontSize: 30, textAlignment: .left, weight: .medium)
     let stackView = UIStackView()
     var ingredientSubViews: [NMIngredientView] = []
+    
 
     init(ingredients: [Ingredient]) {
         super.init(nibName: nil, bundle: nil)

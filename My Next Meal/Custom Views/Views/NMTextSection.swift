@@ -6,12 +6,12 @@
 //
 
 import UIKit
-import SwiftUI
 
 class NMTextSection: UIView {
 
     let sectionTitleLabel = NMTitleLabel(fontSize: 30, textAlignment: .left, weight: .medium)
     let descriptionTitlelabel = NMBodyLabel()
+    
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,6 +26,11 @@ class NMTextSection: UIView {
     convenience init(sectionTitle: String, description: String) {
         self.init(frame: .zero)
         set(sectionTitle: sectionTitle, description: description)
+    }
+
+    func set(sectionTitle: String, description: String) {
+        sectionTitleLabel.text = sectionTitle
+        descriptionTitlelabel.text = description
     }
 
     private func configure() {
@@ -46,35 +51,4 @@ class NMTextSection: UIView {
         ])
     }
 
-    func set(sectionTitle: String, description: String) {
-        sectionTitleLabel.text = sectionTitle
-        descriptionTitlelabel.text = description
-    }
-
-}
-
-struct NMTextSectionContainer: UIViewRepresentable {
-
-    let sectionTitle: String!
-    let description: String!
-
-    func makeUIView(context: Context) -> some UIView {
-        return NMTextSection(sectionTitle: sectionTitle, description: description)
-    }
-
-    func updateUIView(_ uiView: UIViewType, context: Context) {
-    }
-
-}
-
-struct NMTextSection_Previews: PreviewProvider {
-    static var previews: some View {
-        NMTextSectionContainer(sectionTitle: "Ingredients", description: "These are the ingredients.")
-            .preferredColorScheme(.light)
-            .previewLayout(.fixed(width: 250, height: 300))
-
-        NMTextSectionContainer(sectionTitle: "Ingredients", description: "These are the ingredients.")
-            .preferredColorScheme(.dark)
-            .previewLayout(.fixed(width: 250, height: 300))
-    }
 }

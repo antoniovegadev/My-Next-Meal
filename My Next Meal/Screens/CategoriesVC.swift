@@ -8,6 +8,7 @@
 import UIKit
 
 class CategoriesVC: NMDataLoadingVC {
+    
     enum Section: CaseIterable {
         case main
     }
