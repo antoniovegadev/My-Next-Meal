@@ -9,22 +9,14 @@ import UIKit
 
 struct NetworkManager {
 
-    enum MealDBRequest: String {
-        case getCategories = "categories.php"
-        case getMealsByCategory = "filter.php?c="
-        case getMealDetails = "lookup.php?i="
-    }
-
     static let shared = NetworkManager()
-    private let baseURL = "https://www.themealdb.com/api/json/v1/1/"
     private let cache = NSCache<NSString, UIImage>()
     private let decoder = JSONDecoder()
 
     private init() {}
 
-    func getRequest<T: Decodable>(_ request: MealDBRequest, parameter: String = "") async throws -> T {
-        let endpoint = baseURL + request.rawValue + parameter
-        guard let url = URL(string: endpoint) else {
+    func getRequest<T: Decodable>(endpoint: MealDBEndpoint) async throws -> T {
+        guard let url = endpoint.url else {
             throw NMError.invalidURL
         }
         let (data, response) = try await URLSession.shared.data(from: url)

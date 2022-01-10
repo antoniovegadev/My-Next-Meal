@@ -11,7 +11,7 @@ struct CategoryAPIResponse: Decodable {
 
 struct Category: Decodable, Hashable {
     let id: String
-    let category: String
+    let name: String
     let imageURLString: String
     let description: String
 }
@@ -19,7 +19,7 @@ struct Category: Decodable, Hashable {
 extension Category {
     enum CodingKeys: String, CodingKey {
         case id = "idCategory"
-        case category = "strCategory"
+        case name = "strCategory"
         case imageURLString = "strCategoryThumb"
         case description = "strCategoryDescription"
     }

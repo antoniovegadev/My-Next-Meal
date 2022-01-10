@@ -35,7 +35,7 @@ class MealsVC: NMDataLoadingVC {
         view.backgroundColor = .systemBackground
 
         navigationItem.largeTitleDisplayMode = .never
-        navigationItem.title = category.category
+        navigationItem.title = category.name
     }
 
     private func configureTableView() {
@@ -60,7 +60,7 @@ class MealsVC: NMDataLoadingVC {
         showLoadingView()
         Task {
             do {
-                let response: MealAPIResponse = try await NetworkManager.shared.getRequest(.getMealsByCategory, parameter: category.category)
+                let response: MealAPIResponse = try await NetworkManager.shared.getRequest(endpoint: .meals(by: category.name))
                 updateUI(with: response)
                 dismissLoadingView()
             } catch {

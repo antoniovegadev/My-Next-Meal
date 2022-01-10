@@ -94,7 +94,7 @@ class MealDetailVC: NMDataLoadingVC {
         showLoadingView()
         Task {
             do {
-                let response: MealDetailAPIResponse = try await NetworkManager.shared.getRequest(.getMealDetails, parameter: mealID)
+                let response: MealDetailAPIResponse = try await NetworkManager.shared.getRequest(endpoint: .mealDetails(mealID: mealID))
                 updateUI(with: response)
                 dismissLoadingView()
             } catch {

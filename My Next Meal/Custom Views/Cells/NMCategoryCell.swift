@@ -26,7 +26,7 @@ class NMCategoryCell: UICollectionViewCell {
     }
 
     func set(category: Category) {
-        titleLabel.text = category.category
+        titleLabel.text = category.name
         foodImageView.downloadImage(fromURL: category.imageURLString)
     }
 

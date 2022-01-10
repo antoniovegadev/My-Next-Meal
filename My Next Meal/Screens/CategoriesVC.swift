@@ -58,7 +58,7 @@ class CategoriesVC: NMDataLoadingVC {
         showLoadingView()
         Task {
             do {
-                let response: CategoryAPIResponse = try await NetworkManager.shared.getRequest(.getCategories)
+                let response: CategoryAPIResponse = try await NetworkManager.shared.getRequest(endpoint: .categories())
                 updateUI(with: response)
                 dismissLoadingView()
             } catch {
@@ -73,7 +73,7 @@ class CategoriesVC: NMDataLoadingVC {
     }
 
     private func updateUI(with categories: CategoryAPIResponse) {
-        self.categories = categories.categories.sorted { $0.category < $1.category }
+        self.categories = categories.categories.sorted { $0.name < $1.name }
         DispatchQueue.main.async {
             self.updateData(on: self.categories)
         }
