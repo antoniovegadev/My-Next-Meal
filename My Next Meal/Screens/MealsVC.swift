@@ -18,7 +18,7 @@ class MealsVC: NMDataLoadingVC {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configure()
+        configureViewController()
         configureTableView()
         getMeals()
     }
@@ -31,7 +31,7 @@ class MealsVC: NMDataLoadingVC {
         }
     }
 
-    private func configure() {
+    private func configureViewController() {
         view.backgroundColor = .systemBackground
 
         navigationItem.largeTitleDisplayMode = .never

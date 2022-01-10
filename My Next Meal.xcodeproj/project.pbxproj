@@ -91,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				C506506E2788CBE100C5F528 /* NMDataLoadingVC.swift */,
+				C5065079278A786F00C5F528 /* NMIngredientsVC.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -109,7 +110,6 @@
 			children = (
 				C59C1E0527879A1E0051363F /* NMTextSection.swift */,
 				C5065077278A754800C5F528 /* NMIngredientView.swift */,
-				C5065079278A786F00C5F528 /* NMIngredientsVC.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

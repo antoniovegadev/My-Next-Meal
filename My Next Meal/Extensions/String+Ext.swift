@@ -6,7 +6,7 @@
 //
 
 extension String {
-    func isEmtpyWithBraces() -> Bool {
-        self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    func isNotEmpty() -> Bool {
+        !self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
     }
 }

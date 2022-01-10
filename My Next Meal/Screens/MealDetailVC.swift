@@ -23,7 +23,7 @@ class MealDetailVC: NMDataLoadingVC {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configure()
+        configureViewController()
         configureSubViews()
         getMealDetails()
     }
@@ -35,7 +35,7 @@ class MealDetailVC: NMDataLoadingVC {
         }
     }
 
-    private func configure() {
+    private func configureViewController() {
         view.backgroundColor = .systemBackground
         navigationItem.largeTitleDisplayMode = .never
     }
@@ -90,6 +90,16 @@ class MealDetailVC: NMDataLoadingVC {
         ])
     }
 
+    private func updateUI(with mealDetail: MealDetailAPIResponse) {
+        let meal = mealDetail.meals.first!
+        DispatchQueue.main.async {
+            self.add(childVC: NMIngredientsVC(ingredients: meal.ingredients), to: self.ingredientsView)
+            self.titleLabel.text = meal.name
+            self.instructionsView.set(sectionTitle: "Instructions", description: meal.instructions)
+            self.mealImageView.downloadImage(fromURL: meal.imageURLString)
+        }
+    }
+
     private func getMealDetails() {
         showLoadingView()
         Task {
@@ -107,15 +117,5 @@ class MealDetailVC: NMDataLoadingVC {
             }
         }
     }
-
-    private func updateUI(with mealDetail: MealDetailAPIResponse) {
-        let meal = mealDetail.meals.first!
-        DispatchQueue.main.async {
-            self.add(childVC: NMIngredientsVC(ingredients: meal.ingredients), to: self.ingredientsView)
-            self.titleLabel.text = meal.name
-            self.instructionsView.set(sectionTitle: "Instructions", description: meal.instructions)
-            self.mealImageView.downloadImage(fromURL: meal.imageURLString)
-        }
-    }
-
+    
 }

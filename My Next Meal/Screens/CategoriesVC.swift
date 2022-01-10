@@ -54,6 +54,21 @@ class CategoriesVC: NMDataLoadingVC {
         })
     }
 
+    private func updateUI(with categories: CategoryAPIResponse) {
+        self.categories = categories.categories.sorted { $0.name < $1.name }
+        DispatchQueue.main.async {
+            self.updateData(on: self.categories)
+        }
+    }
+
+    private func updateData(on categories: [Category]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Category>()
+        snapshot.appendSections(Section.allCases)
+        snapshot.appendItems(categories, toSection: .main)
+
+        dataSource.apply(snapshot)
+    }
+
     private func getCategories() {
         showLoadingView()
         Task {
@@ -70,21 +85,6 @@ class CategoriesVC: NMDataLoadingVC {
                 dismissLoadingView()
             }
         }
-    }
-
-    private func updateUI(with categories: CategoryAPIResponse) {
-        self.categories = categories.categories.sorted { $0.name < $1.name }
-        DispatchQueue.main.async {
-            self.updateData(on: self.categories)
-        }
-    }
-
-    private func updateData(on categories: [Category]) {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Category>()
-        snapshot.appendSections(Section.allCases)
-        snapshot.appendItems(categories, toSection: .main)
-
-        dataSource.apply(snapshot)
     }
 
 }

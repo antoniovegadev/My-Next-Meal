@@ -29,7 +29,7 @@ class NMIngredientsVC: UIViewController {
         super.viewDidLoad()
 
         createSubViews()
-        configure()
+        configureViewController()
         configureStackView()
         layoutUI()
     }
@@ -53,7 +53,7 @@ class NMIngredientsVC: UIViewController {
         }
     }
 
-    private func configure() {
+    private func configureViewController() {
         titleLabel.text = "Ingredients"
         view.translatesAutoresizingMaskIntoConstraints = false
     }

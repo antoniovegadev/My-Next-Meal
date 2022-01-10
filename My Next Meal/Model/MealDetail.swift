@@ -36,7 +36,7 @@ extension MealDetail {
             let measurement = try measurementContainer.decodeIfPresent(String.self, forKey: measurementKey)
 
             if let name = name, let measurement = measurement,
-               !name.isEmtpyWithBraces() && !measurement.isEmtpyWithBraces() {
+               name.isNotEmpty() && measurement.isNotEmpty() {
                 let ingredient = Ingredient(name: name, measurement: measurement)
                 ingredients.append(ingredient)
             }
