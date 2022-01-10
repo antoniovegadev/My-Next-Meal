@@ -11,7 +11,7 @@ struct CategoryAPIResponse: Decodable {
     let categories: [Category]
 }
 
-struct Category: Decodable {
+struct Category: Decodable, Hashable {
     let id: String
     let category: String
     let imageURLString: String

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NMCategoryCell: UITableViewCell {
+class NMCategoryCell: UICollectionViewCell {
 
     static let reuseID = "NMCategoryCell"
 
@@ -15,8 +15,8 @@ class NMCategoryCell: UITableViewCell {
     let titleLabel = NMTitleLabel(fontSize: 16, textAlignment: .left, weight: .medium)
 
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
 
         configure()
     }
@@ -34,17 +34,17 @@ class NMCategoryCell: UITableViewCell {
         addSubview(foodImageView)
         addSubview(titleLabel)
         
-        let horizontalPadding: CGFloat = 10
+        let padding: CGFloat = 8
 
         NSLayoutConstraint.activate([
-            foodImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: horizontalPadding),
-            foodImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            foodImageView.widthAnchor.constraint(equalToConstant: 60),
-            foodImageView.heightAnchor.constraint(equalToConstant: 60),
+            foodImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding),
+            foodImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
+            foodImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding),
+            foodImageView.heightAnchor.constraint(equalTo: foodImageView.widthAnchor),
 
-            titleLabel.leadingAnchor.constraint(equalTo: foodImageView.trailingAnchor, constant: 10),
-            titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -horizontalPadding)
+            titleLabel.topAnchor.constraint(equalTo: foodImageView.bottomAnchor, constant: 12),
+            titleLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            titleLabel.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
 

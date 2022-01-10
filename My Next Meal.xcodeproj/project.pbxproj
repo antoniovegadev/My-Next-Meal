@@ -31,6 +31,7 @@
 		C5CD2A9C278568EB0091040C /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD2A9B278568EB0091040C /* Meal.swift */; };
 		C5CD2A9E27856B660091040C /* MealsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD2A9D27856B660091040C /* MealsVC.swift */; };
 		C5CD2AA02785E3940091040C /* NMMealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD2A9F2785E3940091040C /* NMMealCell.swift */; };
+		C5F832A5278BC00800F3E73C /* UIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F832A4278BC00700F3E73C /* UIHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		C5CD2A9B278568EB0091040C /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		C5CD2A9D27856B660091040C /* MealsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsVC.swift; sourceTree = "<group>"; };
 		C5CD2A9F2785E3940091040C /* NMMealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NMMealCell.swift; sourceTree = "<group>"; };
+		C5F832A4278BC00700F3E73C /* UIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				C5CD2A8B27851F790091040C /* NMError.swift */,
+				C5F832A4278BC00700F3E73C /* UIHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				C5CD2A9E27856B660091040C /* MealsVC.swift in Sources */,
 				C59C1DFD27865E0E0051363F /* MealDetailVC.swift in Sources */,
 				C5CD2A882785190E0091040C /* NetworkManager.swift in Sources */,
+				C5F832A5278BC00800F3E73C /* UIHelper.swift in Sources */,
 				C59C1E01278692A40051363F /* Ingredient.swift in Sources */,
 				C5CD2A902785490E0091040C /* NMFoodImageView.swift in Sources */,
 				C5CD2A8C27851F790091040C /* NMError.swift in Sources */,

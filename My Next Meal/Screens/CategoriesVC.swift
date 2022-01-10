@@ -8,27 +8,26 @@
 import UIKit
 
 class CategoriesVC: NMDataLoadingVC {
+    enum Section: CaseIterable {
+        case main
+    }
 
-    let tableView = UITableView()
     var categories: [Category] = []
+
+    var collectionView: UICollectionView!
+    var dataSource: UICollectionViewDiffableDataSource<Section, Category>!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        configure()
-        configureTableView()
+        configureViewController()
+        configureCollectionView()
+        configureDataSource()
         getCategories()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: selectedIndexPath, animated: true)
-        }
-    }
-
-    private func configure() {
+    private func configureViewController() {
         view.backgroundColor = .systemBackground
 
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -36,15 +35,22 @@ class CategoriesVC: NMDataLoadingVC {
         navigationItem.title = "Categories"
     }
 
-    private func configureTableView() {
-        view.addSubview(tableView)
+    private func configureCollectionView() {
+        collectionView = UICollectionView(
+            frame: view.bounds,
+            collectionViewLayout: UIHelper.createThreeColumnFlowLayout(in: view)
+        )
+        view.addSubview(collectionView)
+        collectionView.delegate = self
+        collectionView.register(NMCategoryCell.self, forCellWithReuseIdentifier: NMCategoryCell.reuseID)
+    }
 
-        tableView.frame = view.bounds
-        tableView.rowHeight = 80
-        tableView.delegate = self
-        tableView.dataSource = self
-
-        tableView.register(NMCategoryCell.self, forCellReuseIdentifier: NMCategoryCell.reuseID)
+    private func configureDataSource() {
+        dataSource = UICollectionViewDiffableDataSource<Section, Category>(collectionView: collectionView, cellProvider: { collectionView, indexPath, category in
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NMCategoryCell.reuseID, for: indexPath) as! NMCategoryCell
+            cell.set(category: category)
+            return cell
+        })
     }
 
     private func getCategories() {
@@ -68,34 +74,29 @@ class CategoriesVC: NMDataLoadingVC {
     private func updateUI(with categories: CategoryAPIResponse) {
         self.categories = categories.categories.sorted { $0.category < $1.category }
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            self.updateData(on: self.categories)
         }
+    }
+
+    private func updateData(on categories: [Category]) {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Category>()
+        snapshot.appendSections(Section.allCases)
+        snapshot.appendItems(categories, toSection: .main)
+
+        dataSource.apply(snapshot)
     }
 
 }
 
-extension CategoriesVC: UITableViewDelegate, UITableViewDataSource {
+extension CategoriesVC: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let category = dataSource.itemIdentifier(for: indexPath) else {
+            fatalError("didSelectItemAt index \(indexPath.row) does not exist.")
+        }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: NMCategoryCell.reuseID) as! NMCategoryCell
-        let category = categories[indexPath.row]
-
-        cell.set(category: category)
-
-        return cell
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let destVC = MealsVC()
-        let category = categories[indexPath.row]
-
         destVC.category = category
 
         navigationController?.pushViewController(destVC, animated: true)
     }
-
 }
